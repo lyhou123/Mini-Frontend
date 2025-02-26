@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router"
 import HomepageView from "../views/HomepageView.vue"
 import PrivacyPageView from "../views/PrivacyPageView.vue"
 import AboutPageView from "../views/AboutPageView.vue"
+import ProductPageView from "../views/ProductPageView.vue"
+import ProductDetails from "../views/ProductDetailsView.vue"
 
 const routes = [
     {
@@ -17,17 +19,13 @@ const routes = [
     {
       path: '/product',
       name: 'product',
-      component:{
-        template: '<div>Product Page</div>'
-      }
+      component: ProductPageView
       
     },
     {
-      path: '/product/:uuid',
-      name: 'product',
-      component:{
-        template: '<div>Product Page</div>'
-      }
+      path: '/product/:id',
+      name: 'productDetails',
+      component: ProductDetails
 
     },
     {
