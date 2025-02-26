@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref } from 'vue'
 import { RouterLink } from 'vue-router';
-
+import cartIcon from '/icons/cart-icon.svg'
 
 const hamburgerState = ref('hide')
 
@@ -78,7 +78,27 @@ function hideHamburger(): void {
 					>About
 				</RouterLink>
 			</nav>
-
+			<div
+				class="relative h-5 cursor-pointer"
+				
+				data-test="cart-button"
+			>
+				<img
+					class="h-full hover:opacity-50 active:translate-y-0.5"
+					:src="cartIcon"
+					alt=""
+				/>
+				<Transition>
+					<div
+						v-show=" 0"
+						class="absolute -right-2 top-3 flex h-4 w-4 flex-col items-center justify-center rounded-full bg-red-600 text-xs font-black transition-all duration-300"
+						data-test="cart-bubble"
+					>
+						<!-- {{ cartStore.cartLength }} -->
+					</div>
+				</Transition>
+			</div>
+	
 		</section>
 
 		<transition>
