@@ -21,8 +21,8 @@ import keycapsImage from '/images/keycaps.webp'
 				<div
 					class="group bg-green-600 order-1 flex h-full w-full flex-col items-center justify-center md:order-none md:grid md:grid-cols-7"
 				>
-					<router-link
-						:to="{ name: 'keyboards', params: { id: 1 } }"
+					<RouterLink
+						:to="{ name: 'product', params: { uuid: 1 } }"
 						href=""
 						class="relative flex h-full w-full flex-col items-center justify-center overflow-hidden md:col-span-4 md:px-10"
 					>
@@ -48,7 +48,7 @@ import keycapsImage from '/images/keycaps.webp'
 						<div
 							class="absolute h-[32rem] w-[32rem] rounded-full border border-black opacity-40 transition duration-700 group-hover:scale-125 md:h-[46rem] md:w-[46rem]"
 						></div>
-					</router-link>
+					</RouterLink>
 					<div
 						class="relative z-10 col-span-3 flex h-full w-full flex-col justify-center bg-green-600 md:pl-4 md:pr-20 lg:pl-6 lg:pr-24"
 					>
@@ -65,7 +65,7 @@ import keycapsImage from '/images/keycaps.webp'
 							truly remarkable typing feel.
 						</p>
 						<ButtonSolid
-							:to="{ name: 'keyboards', params: { id: 1 } }"
+							:to="{ name: 'product', params: { uuid: 1 } }"
 							content="SEE PRODUCT"
 							add="font-semibold hover:rotate-x-3"
 							class="mb-10 self-center md:mb-0 md:self-start"
@@ -78,12 +78,12 @@ import keycapsImage from '/images/keycaps.webp'
 			>
 				<h2 class="text-3xl font-semibold uppercase">Kraken deskmat</h2>
 				<ButtonEmpty
-					:to="{ name: 'deskmats', params: { id: 1 } }"
+					:to="{ name: 'product', params: { uuid: 1 } }"
 					content="see product"
 				/>
 			</div>
-			<router-link
-				:to="{ name: 'deskmats', params: { id: 1 } }"
+			<RouterLink
+				:to="{ name: 'product', params: { uuid: 1 } }"
 				class="order-2 flex h-64 flex-col items-center justify-center overflow-hidden rounded-md bg-k-grey text-black md:order-none md:col-span-4 md:row-span-2 md:block md:h-full"
 			>
 				<img
@@ -91,7 +91,7 @@ import keycapsImage from '/images/keycaps.webp'
 					:src="krakenImage"
 					alt=""
 				/>
-			</router-link>
+			</RouterLink>
 			<div
 				class="order-4 col-span-3 row-span-2 overflow-hidden rounded-md bg-k-grey text-black md:order-none md:h-full"
 			>
@@ -101,7 +101,7 @@ import keycapsImage from '/images/keycaps.webp'
 				class="order-5 col-span-3 row-span-2 flex w-full flex-col items-center justify-center gap-6 rounded-md bg-k-grey p-6 text-black md:order-none md:h-full md:items-start md:px-16"
 			>
 				<h2 class="text-3xl font-semibold uppercase">Keycaps</h2>
-				<ButtonEmpty :to="{ path: 'keycaps' }" content="see all" />
+				<ButtonEmpty :to="{ path: 'product' }" content="see all" />
 			</div>
 		</div>
 	</section>

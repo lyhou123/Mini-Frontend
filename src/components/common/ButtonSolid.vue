@@ -4,7 +4,7 @@ type namedLocation = {
 	name?: string
 	path?: string
 	params?: {
-		id: number | string
+		uuid:  number | string
 	}
 }
 

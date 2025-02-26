@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-3xl mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto px-4 py-8 shadow-md">
       <h1 class="text-3xl font-bold text-center text-gray-800">Privacy Policy</h1>
       <section class="mt-8">
         <h2 class="text-2xl font-semibold text-gray-800">1. Information We Collect</h2>

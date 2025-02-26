@@ -40,18 +40,18 @@ import instagramIcon from '/icons/instagram.svg'
 					</router-link>
 					<router-link
 						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-k-main"
-						to="/keyboards"
-						>Keyboards
+						to="/product"
+						>Product
 					</router-link>
 					<router-link
 						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-k-main"
-						to="/keycaps"
-						>Keycaps
+						to="/privacy"
+						>privacy
 					</router-link>
 					<router-link
 						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-k-main"
-						to="/deskmats"
-						>Deskmats
+						to="/about"
+						>About
 					</router-link>
 				</nav>
 			</div>

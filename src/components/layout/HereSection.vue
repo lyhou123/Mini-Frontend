@@ -31,7 +31,7 @@ import mxupImage from '/product/up-nobg.webp'
 					enthusiast.
 				</p>
 				<ButtonSolid
-					:to="{ name: 'keyboards', params: { id: 2 } }"
+					:to="{ name: 'product', params: { uuid: 2 } }"
 					content="see product"
 					add="font-bold mb-20"
 				/>
