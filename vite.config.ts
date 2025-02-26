@@ -4,6 +4,11 @@ import tailwindcss from '@tailwindcss/vite'
 
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
   plugins: [
 
     vue(),
