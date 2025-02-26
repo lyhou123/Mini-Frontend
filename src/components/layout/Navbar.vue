@@ -2,8 +2,11 @@
 import {ref } from 'vue'
 import { RouterLink } from 'vue-router';
 import cartIcon from '/icons/cart-icon.svg'
+import { useCartStore } from '../../stores/useCartStore';
+import CartModal from '../Cart/CartModal.vue';
 
 const hamburgerState = ref('hide')
+
 
 function showHamburger(): void {
 	hamburgerState.value = 'show'
@@ -12,6 +15,10 @@ function showHamburger(): void {
 function hideHamburger(): void {
 	hamburgerState.value = 'hide'
 }
+
+const cartStore = useCartStore()
+
+
 </script>
 
 <template>
@@ -21,7 +28,7 @@ function hideHamburger(): void {
 		data-test="nav-desktop"
 	>
 		<section
-			class="relative flex w-4/5 max-w-6xl flex-row items-center justify-between border-b border-zinc-500 py-6 md:w-11/12 lg:w-4/5"
+			class="relative flex w-4/5  flex-row items-center justify-between border-b border-zinc-500 py-6 md:w-11/12 lg:w-4/5"
 		>
 			<button
 				id="hamburger"
@@ -80,7 +87,7 @@ function hideHamburger(): void {
 			</nav>
 			<div
 				class="relative h-5 cursor-pointer"
-				
+				@click="cartStore.toggleCart(!cartStore.showCart)"
 				data-test="cart-button"
 			>
 				<img
@@ -90,15 +97,15 @@ function hideHamburger(): void {
 				/>
 				<Transition>
 					<div
-						v-show=" 0"
+				        v-show="cartStore.cartLength !== 0"
 						class="absolute -right-2 top-3 flex h-4 w-4 flex-col items-center justify-center rounded-full bg-red-600 text-xs font-black transition-all duration-300"
 						data-test="cart-bubble"
 					>
-						<!-- {{ cartStore.cartLength }} -->
+						{{ cartStore.cartLength }}
 					</div>
 				</Transition>
 			</div>
-	
+			<CartModal v-show="cartStore.showCart" />
 		</section>
 
 		<transition>

@@ -1,14 +1,15 @@
 <script setup lang="ts">
 
+import { useCartStore } from '../../stores/useCartStore';
 import type { Product } from '../../types/Product';
 import ButtonGoBack from '../common/ButtonGoBack.vue';
 import ButtonSolid from '../common/ButtonSolid.vue';
 
-
-
 const props = defineProps<{
 	item: Product
 }>()
+
+const cardStore = useCartStore();
 
 </script>
 
@@ -37,7 +38,7 @@ const props = defineProps<{
 			</p>
 			<p class="my-8 text-xl font-bold text-black">$ {{ props.item.price }}</p>
 			<ButtonSolid
-				
+				@click="cardStore.addToCart(props.item)"
 				color="light"
 				add="font-bold"
 				content="add to cart"
