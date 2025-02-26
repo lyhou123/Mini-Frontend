@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router';
 import ProductDetailsComponent from '../components/Product/ProductDetailsComponent.vue';
 import ProductFeature from '../components/Product/ProductFeature.vue';
 import ProductCategoryBox from '../components/Product/ProductCategoryBox.vue';
-import SectionInfo from '../components/layout/SectionInfo.vue';
+
 
 const product = ref<Product | null>(null);
 const errorMessage = ref<string | null>(null);
@@ -63,7 +63,7 @@ onMounted(() => {
 
             <!-- product category box dynamic data flow product category-->
             <ProductCategoryBox :productCategory="product.title"/>
-            
+
         </div>
 
         <div v-else class="text-center text-gray-500">
