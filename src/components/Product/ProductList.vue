@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { Product } from '../../types/Product';
-import arrowIcon from '/icons/right-arrow.svg'
+import type { Product,Categories, } from '../../types/Product';
+
 import ProductListLoading from './ProductListLoading.vue';
 import { onMounted, ref } from 'vue';
 import { useCartStore } from '../../stores/useCartStore';
@@ -12,7 +12,7 @@ const isLoading = ref(true);
 // const addToCart = useAddToCard();
 const cardStore = useCartStore();
 
-const categories = ["Electronics", "Clothing", "Home & Kitchen", "Books", "Toys & Games"]
+const categories = ref<Categories[]>([]);
 
 
 //fecth product from api
@@ -22,13 +22,11 @@ const handleFetchProduct = async () => {
 
     try {
 
-        const response = await fetch('https://fakestoreapi.com/products');
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/products`);
 
         const data = await response.json();
 
-        products.value = data;
-
-        console.log(data);
+        products.value = data.content;
 
     } catch (error) {
         console.error(error);
@@ -37,9 +35,22 @@ const handleFetchProduct = async () => {
     }
 };
 
+const hanndleFetchCategory = async () => {
+	try {
+		const response = await fetch(`${import.meta.env.VITE_API_URL}/categories`);
+
+		const data = await response.json();
+
+		categories.value = data.content;
+
+	} catch (error) {
+		console.error(error);
+	}
+};
 
 onMounted(() => {
     handleFetchProduct();
+	hanndleFetchCategory();
 });
 
 </script>
@@ -57,7 +68,7 @@ onMounted(() => {
 	<div class="my-10">
     <ul class="flex flex-wrap md:flex md:items-center  space-x-20 cursor-pointer ">
       <li v-for="(category, index) in categories" :key="index" class="text-xl font-semibold text-gray-700 hover:text-green-600">
-        {{ category }}
+        {{ category?.name || 'All' }}
       </li>
     </ul>
   </div>
@@ -68,12 +79,12 @@ onMounted(() => {
 
 	  <div v-for="product in products" class="group max-w-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-gray-800">
 	
-	 <RouterLink :to="'/product/' + product.id ">
+	 <RouterLink :to="'/product/' + product.uuid ">
 	  <!-- Product Image -->
 	  <div class="relative overflow-hidden">
 		<img 
 		  class="w-full h-64 object-cover cursor-pointer object-center transition-transform duration-500 group-hover:scale-105" 
-		  :src="product.image" 
+		  :src="product.thumbnail" 
 		  :alt="product.title"
 		/>
 		<div class="absolute top-3 right-3">

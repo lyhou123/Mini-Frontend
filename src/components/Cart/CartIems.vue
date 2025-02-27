@@ -21,7 +21,7 @@ const props = defineProps<{
 		<div class="flex h-full w-full flex-row gap-6">
 			<img
 				class="aspect-square w-20 rounded-lg object-cover shadow-md lg:w-24"
-				:src="props.cartItem.image"
+				:src="props.cartItem.thumbnail"
 				alt=""
 			/>
 			<div class="flex flex-col justify-center">

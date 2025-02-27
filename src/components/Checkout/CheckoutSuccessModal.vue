@@ -75,7 +75,7 @@ onBeforeUnmount(() => {
             <div class="flex h-full w-full flex-row items-center">
               <img
                 class="aspect-square h-24"
-                :src="cartStore.getFirstItem.product.image"
+                :src="cartStore.getFirstItem.product.thumbnail"
                 alt=""
                 loading="lazy"
               />

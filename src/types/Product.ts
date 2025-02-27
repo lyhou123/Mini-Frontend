@@ -4,7 +4,7 @@ export type Product = {
     title:string;
     description:string;
     price:string;
-    image:string;
+    thumbnail:string;
     category:string;
     createdAt:string;
 }
@@ -12,4 +12,9 @@ export type Product = {
 export type contents = {
 	count: number
 	content: string
+}
+
+export type Categories = {
+    uuid: string
+    name: string
 }

@@ -2,7 +2,7 @@
 import { useFormStore } from '../../stores/useFormStore';
 
 
-const formStore = useFormStore()
+const formStore = useFormStore() as { [key: string]: any }
 
 const props = defineProps<{
 	type: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url'

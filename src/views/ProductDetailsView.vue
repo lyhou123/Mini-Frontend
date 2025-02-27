@@ -11,9 +11,9 @@ const product = ref<Product | null>(null);
 const errorMessage = ref<string | null>(null);
 const route = useRoute();
 
-const handleFetchProductDetails = async (id: number) => {
+const handleFetchProductDetails = async (uuid: string) => {
     try {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/products/${uuid}`);
         
         if (!response.ok) {
             throw new Error(`Failed to fetch product. Status: ${response.status}`);
@@ -21,7 +21,7 @@ const handleFetchProductDetails = async (id: number) => {
 
         const data = await response.json();
 
-        product.value = data;
+        product.value = data?.data;
 
         errorMessage.value = null; 
 
@@ -31,14 +31,15 @@ const handleFetchProductDetails = async (id: number) => {
     }
 };
 
+
 onMounted(() => {
 
-    const id = Number(route.params.id);
+    const uuid = route.params.uuid as string;
 
-    if (!isNaN(id) && id > 0) {
-        handleFetchProductDetails(id);
+    if (uuid) {
+        handleFetchProductDetails(uuid);
     } else {
-        errorMessage.value = "Invalid product ID.";
+        errorMessage.value = "Invalid product UUID.";
     }
 });
 </script>

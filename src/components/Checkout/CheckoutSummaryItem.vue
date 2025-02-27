@@ -15,7 +15,7 @@ const props = defineProps<{
 		<div class="basis-1/4 justify-self-start overflow-hidden rounded-lg">
 			<img
 				class="aspect-square h-fit w-fit object-cover shadow-md"
-				:src="props.cartItem.image"
+				:src="props.cartItem.thumbnail"
 				alt=""
 			/>
 		</div>

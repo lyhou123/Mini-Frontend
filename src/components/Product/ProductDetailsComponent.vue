@@ -50,7 +50,7 @@ const cardStore = useCartStore();
 			<img
 				loading="lazy"
 				class="relative aspect-square object-cover"
-				:src="props.item.image"
+				:src="props.item.thumbnail"
 				alt=""
 			/>
 		</div>
