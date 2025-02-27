@@ -8,6 +8,7 @@ import CheckoutPageView from "../views/CheckoutPageView.vue"
 import ProductCategory from "../views/ProductCategoryPageView.vue"
 import LoginPageView from "../views/LoginPageView.vue"
 import RegisterPageView from "../views/RegisterPageView.vue"
+import DashboardPageView from "../views/DashboardView.vue"
 
 const routes = [
     {
@@ -56,6 +57,11 @@ const routes = [
       path: '/register',
       name: 'register',
       component: RegisterPageView
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: DashboardPageView
     }
   ]
   
