@@ -3,11 +3,11 @@ import { useCartStore } from '../../stores/useCartStore';
 
 import ButtonSolid from '../common/ButtonSolid.vue';
 import SummaryItem from './CheckoutSummaryItem.vue'
-
+import { useFormStore } from '../../stores/useFormStore';
 
 const cartStore = useCartStore()
 
-// const formStore = useFormStore()
+const formStore = useFormStore()
 
 </script>
 
@@ -58,6 +58,7 @@ const cartStore = useCartStore()
 			<p class="text-lg font-bold text-black">${{ cartStore.cartValue }}</p>
 		</div>
 		<ButtonSolid
+		    @click="formStore.submit()"
 			content="continue & pay"
 			color="light"
 			class="mt-8 self-center font-bold"

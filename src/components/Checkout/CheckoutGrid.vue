@@ -14,7 +14,7 @@ const formStore = useFormStore();
 	<div
 		class="flex h-full  w-11/12 max-w-6xl mx-auto flex-col items-center gap-4 lg:mb-24 lg:grid lg:w-4/5 lg:grid-cols-3 lg:gap-6"
 	>
-	     <CheckoutSuccessModal v-show="formStore.bannerOn" />
+	     <CheckoutSuccessModal v-show="formStore.showBanner" />
 		<CheckoutForm />
 		<CheckoutSummary />
 	</div>

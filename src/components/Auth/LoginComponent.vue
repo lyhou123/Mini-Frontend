@@ -7,7 +7,7 @@
   import { localize } from '@vee-validate/i18n';
   import { EyeIcon, EyeOffIcon,  XCircleIcon } from 'lucide-vue-next';
   import { useAuthStore } from '../../stores/Auth/authStore';
-import { RouterLink } from 'vue-router';
+  import { RouterLink } from 'vue-router';
 
   
   // Define validation rules
@@ -80,7 +80,7 @@ import { RouterLink } from 'vue-router';
            <RouterLink to="/register" >
        
             <a href="#" class="font-medium text-green-600 hover:text-green-500">
-              Sign
+              Sign up
             </a>
            </RouterLink>
           </p>

@@ -23,20 +23,6 @@ api.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
-// // Add a response interceptor to handle 401 errors
-// api.interceptors.response.use((response) => response, (error) => {
-
-//   if (error.response.status === 401) {
-
-//     const authStore = useAuthStore();
-
-//     authStore.logout(); // Clear token and user data
-    
-//     Router.push('/login'); // Redirect to login page
-//   }
-//   return Promise.reject(error);
-// });
-
 
 api.interceptors.response.use((response) => response, async (error) => {
 
