@@ -98,7 +98,7 @@ const cartStore = useCartStore()
 				<Transition>
 					<div
 				        v-show="cartStore.cartLength !== 0"
-						class="absolute -right-2 top-3 flex h-4 w-4 flex-col items-center justify-center rounded-full bg-red-600 text-xs font-black transition-all duration-300"
+						class="text-white absolute -right-2 top-3 flex h-4 w-4 flex-col items-center justify-center rounded-full bg-green-600 text-xs font-black transition-all duration-300"
 						data-test="cart-bubble"
 					>
 						{{ cartStore.cartLength }}
