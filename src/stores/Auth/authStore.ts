@@ -1,7 +1,7 @@
 
 
 import { defineStore } from 'pinia';
-import type { Credentials, UserData, User } from '../../types/User'; // Adjust the path as needed
+import type { Credentials, UserData, User } from '../../types/User'; 
 import Router from '../../routers/router';
 import axios from '../../api/axois';
 import VueCookies from 'vue-cookies'; 
@@ -46,9 +46,11 @@ export const useAuthStore = defineStore('auth', {
     async login(credentials: Credentials) {
 
       try {
-
+        
         const response = await axios.post('/auth/login', credentials);
+
         const token = response?.data?.data?.accessToken;
+        const refreshToken = response?.data?.data?.refreshToken;
 
         if (token) {
 
@@ -57,6 +59,7 @@ export const useAuthStore = defineStore('auth', {
           const userRoles: string[] = decodedToken?.role || []; 
 
           this.setToken(token);
+          this.setRefreshToken(refreshToken);
     
           if (userRoles.includes('ROLE_ADMIN')) {
 
@@ -74,7 +77,13 @@ export const useAuthStore = defineStore('auth', {
 
     async register(userData: UserData) {
       try {
-        const response = await axios.post('/auth/register', userData);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+        });
         if (response.status === 201) {
           Router.push('/login'); // Redirect to login page after registration
         }

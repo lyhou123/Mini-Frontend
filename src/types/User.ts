@@ -15,5 +15,6 @@ export type User = {
   }
   
   export interface UserData extends Credentials  {
-    name: string;
+    userName: string;
+    confirmPassword: string;
   }
