@@ -6,6 +6,8 @@ import ProductPageView from "../views/ProductPageView.vue"
 import ProductDetails from "../views/ProductDetailsView.vue"
 import CheckoutPageView from "../views/CheckoutPageView.vue"
 import ProductCategory from "../views/ProductCategoryPageView.vue"
+import Login from "../views/LoginPageView.vue"
+import LoginPageView from "../views/LoginPageView.vue"
 
 const routes = [
     {
@@ -44,6 +46,11 @@ const routes = [
       path: '/checkout',
       name: 'checkout',
       component:CheckoutPageView
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginPageView
     }
   ]
   
