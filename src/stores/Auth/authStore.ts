@@ -5,7 +5,7 @@ import type { Credentials, UserData, User } from '../../types/User'; // Adjust t
 import Router from '../../routers/router';
 import axios from '../../api/axois';
 import VueCookies from 'vue-cookies'; 
-
+import { jwtDecode } from 'jwt-decode';
 
 export const useAuthStore = defineStore('auth', {
 
@@ -50,8 +50,22 @@ export const useAuthStore = defineStore('auth', {
         const response = await axios.post('/auth/login', credentials);
         const token = response?.data?.data?.accessToken;
 
-        this.setToken(token);
-        Router.push('/dashboard'); // Redirect to dashboard after login
+        if (token) {
+
+          const decodedToken: any = jwtDecode(token); 
+
+          const userRoles: string[] = decodedToken?.role || []; 
+
+          this.setToken(token);
+    
+          if (userRoles.includes('ROLE_ADMIN')) {
+
+            Router.push('/dashboard');
+            
+          } else {
+            Router.push('/'); 
+          }
+        }
 
       } catch (error: any) {
         throw error.response?.data?.message || 'Login failed';
