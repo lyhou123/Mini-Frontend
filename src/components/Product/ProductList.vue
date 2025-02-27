@@ -15,8 +15,6 @@ const cardStore = useCartStore();
 
 const categories = ref<Categories[]>([]);
 
-const selectedCategory = ref<string | null>(null);
-
 
 const handleFetchProduct = async (category: string | null = null) => {
     isLoading.value = true;

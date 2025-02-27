@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import type { Product } from '../types/Product';
 import { useRoute } from 'vue-router';
 import ProductDetailsComponent from '../components/Product/ProductDetailsComponent.vue';
@@ -8,6 +8,9 @@ import ProductCategoryBox from '../components/Product/ProductCategoryBox.vue';
 
 
 const product = ref<Product | null>(null);
+const productCategory = ref<Product[]>([]);
+const category = ref<string>("");
+
 const errorMessage = ref<string | null>(null);
 const route = useRoute();
 
@@ -23,25 +26,52 @@ const handleFetchProductDetails = async (uuid: string) => {
 
         product.value = data?.data;
 
+        category.value = data?.data?.category;
+
         errorMessage.value = null; 
 
     } catch (error) {
-        console.error(error);
+        
         errorMessage.value = "Failed to load product details. Please try again later.";
     }
 };
 
 
+const handleFetchProductCategory = async (category:string) => {
+
+	try {
+		const response = await fetch(`${import.meta.env.VITE_API_URL}/products/category/${category}`);
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch products. Status: ${response.status}`);
+		}
+
+		const data = await response.json();
+
+		productCategory.value = data?.content;
+
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+
 onMounted(() => {
-
     const uuid = route.params.uuid as string;
-
     if (uuid) {
         handleFetchProductDetails(uuid);
     } else {
         errorMessage.value = "Invalid product UUID.";
     }
 });
+
+// Watch for changes in product and fetch category when product is updated
+watch(product, (newProduct) => {
+    if (newProduct && newProduct.category) {
+        handleFetchProductCategory(newProduct.category);
+    }
+});
+
 </script>
 
 <template>
@@ -63,7 +93,7 @@ onMounted(() => {
             ]"/>
 
             <!-- product category box dynamic data flow product category-->
-            <ProductCategoryBox :productCategory="product.title"/>
+            <ProductCategoryBox :products="productCategory"/>
 
         </div>
 
