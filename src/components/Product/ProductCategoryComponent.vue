@@ -6,38 +6,40 @@ import { onMounted, ref } from 'vue';
 import { useCartStore } from '../../stores/useCartStore';
 import { RouterLink } from 'vue-router';
 
-const products = ref<Product[]>([]);
+const prop = defineProps<{
+	Products: Product[];	
+}>();
 
-const isLoading = ref(true);
+// const products = ref<Product[]>([]);
+
+const isLoading = ref(false);
 
 // const addToCart = useAddToCard();
 const cardStore = useCartStore();
 
 const categories = ref<Categories[]>([]);
 
-const selectedCategory = ref<string | null>(null);
 
-
-const handleFetchProduct = async (category: string | null = null) => {
-    isLoading.value = true;
+// const handleFetchProduct = async () => {
     
-    try {
-        let url = `${import.meta.env.VITE_API_URL}/products`;
-        
-        if (category && category !== "All") {
-            url += `?category=${encodeURIComponent(category)}`;
-        }
+//     isLoading.value = true;
+    
+//     try {
 
-        const response = await fetch(url);
-        const data = await response.json();
-        products.value = data.content;
+//         let url = `${import.meta.env.VITE_API_URL}/products/category/${prop.category}`;
 
-    } catch (error) {
-        console.error(error);
-    } finally {
-        isLoading.value = false;
-    }
-};
+//         const response = await fetch(url);
+
+//         const data = await response.json();
+
+//         products.value = data.content;
+
+//     } catch (error) {
+//         console.error(error);
+//     } finally {
+//         isLoading.value = false;
+//     }
+// };
 
 
 const hanndleFetchCategory = async () => {
@@ -54,7 +56,7 @@ const hanndleFetchCategory = async () => {
 };
 
 onMounted(() => {
-    handleFetchProduct();
+    // handleFetchProduct();
 	hanndleFetchCategory();
 });
 
@@ -71,22 +73,23 @@ onMounted(() => {
 
 	<!-- category name of each products -->
 	<div class="my-10">
+
+
     <ul class="flex flex-wrap md:flex md:items-center  space-x-20 cursor-pointer ">
 
-		
-	   <!-- Add "See All Products" link -->
+          <!-- Add "See All Products" link -->
 	   <li class="text-xl font-semibold text-gray-700 hover:text-green-600">
        <RouterLink :to="'/product'">
            All
       </RouterLink>
     </li>
 
+	<!-- fetch data from api -->
       <li  v-for="(category, index) in categories" :key="index" class="text-xl font-semibold text-gray-700 hover:text-green-600">
-        <RouterLink :to="'/product/category/' + encodeURIComponent(category?.name || 'All')">
+		<RouterLink :to="'/product/category/' + encodeURIComponent(category?.name || 'All')">
         {{ category?.name || 'All' }}
       </RouterLink>
       </li>
-
 
     </ul>
   </div>
@@ -95,7 +98,7 @@ onMounted(() => {
     <!-- Product list  -->
 	 <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
 
-	  <div v-for="product in products" class="group max-w-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-gray-800">
+	  <div v-for="product in prop.Products" class="group max-w-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-gray-800">
 	
 	 <RouterLink :to="'/product/' + product.uuid ">
 	  <!-- Product Image -->

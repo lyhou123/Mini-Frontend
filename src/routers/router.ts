@@ -5,6 +5,7 @@ import AboutPageView from "../views/AboutPageView.vue"
 import ProductPageView from "../views/ProductPageView.vue"
 import ProductDetails from "../views/ProductDetailsView.vue"
 import CheckoutPageView from "../views/CheckoutPageView.vue"
+import ProductCategory from "../views/ProductCategoryPageView.vue"
 
 const routes = [
     {
@@ -28,6 +29,11 @@ const routes = [
       name: 'productDetails',
       component: ProductDetails
 
+    },
+    {
+      path: '/product/category/:category',
+      name: 'productCategory',
+      component: ProductCategory
     },
     {
       path: '/about',
