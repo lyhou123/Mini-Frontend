@@ -100,7 +100,7 @@ onMounted(() => {
 	  <div class="relative overflow-hidden">
 		<img 
 		  class="w-full h-64 object-cover cursor-pointer object-center transition-transform duration-500 group-hover:scale-105" 
-		  :src="product.thumbnail" 
+		  :src="product?.thumbnail || '/images/placeholder.png'" 
 		  :alt="product.title"
 		/>
 		<div class="absolute top-3 right-3">
@@ -112,13 +112,13 @@ onMounted(() => {
 	  <!-- Product Info -->
 	  <div class="p-5">
 		<div class="flex justify-between items-start mb-2">
-		  <h3 class="text-xl font-semibold text-gray-900 dark:text-white line-clamp-2">{{ product.title }}</h3>
+		  <h3 class="text-xl font-semibold text-gray-900 dark:text-white line-clamp-2">{{ product?.title || "Unkown" }}</h3>
 		  <div class="flex items-center">
-			<span class="text-2xl font-bold text-gray-900 dark:text-white">${{ product.price }}</span>
+			<span class="text-2xl font-bold text-gray-900 dark:text-white">${{ product?.price || "N/A" }}</span>
 		  </div>
 		</div>
 		
-		<p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{{ product.description }}</p>
+		<p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{{ product?.description || "undefined" }}</p>
 		
 		<!-- Rating -->
 		<div class="flex items-center mb-4">

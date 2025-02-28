@@ -9,6 +9,7 @@ import CreateProductModal from './CreateProductModal.vue';
 import EditProductModal from './EditProductModal.vue';
 
 const products = ref<Product[]>([]);
+const totalProducts = ref<number>(0);
 
 
 const isLoading = ref<boolean>(false);
@@ -44,22 +45,44 @@ const handleDelete = async () => {
   }
 };
 
-const handleFetchProduct = async (category: string | null = null) => {
+const currentPage = ref<number>(0);
+const pageSize = ref<number>(7);
+
+const handleFetchProduct = async (category: string | null = null, page: number = currentPage.value, size: number = pageSize.value) => {
+
   isLoading.value = true;
+
   try {
-    let url = `${import.meta.env.VITE_API_URL}/products`;
+
+    let url = `${import.meta.env.VITE_API_URL}/products?page=${page}&size=${size}`;
     if (category && category !== "All") {
-      url += `?category=${encodeURIComponent(category)}`;
+      url += `&category=${encodeURIComponent(category)}`;
     }
+
     const response = await fetch(url);
+
     const data = await response.json();
     products.value = data.content;
+    totalProducts.value = data.totalElements;
+    
+
   } catch (error) {
     console.error(error);
   } finally {
     isLoading.value = false;
   }
 };
+
+// Change page (Next/Previous)
+const changePage = (direction: string) => {
+  if (direction === 'next') {
+    currentPage.value++;
+  } else if (direction === 'previous') {
+    currentPage.value--;
+  }
+  handleFetchProduct();  // Fetch new data based on the updated page
+};
+
 
 
 const isCreateModalOpen = ref<boolean>(false);
@@ -174,7 +197,7 @@ onMounted(() => {
                   <p class="text-gray-900 whitespace-no-wrap">{{ product?.title || "Unknown" }}</p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                  <img class="w-10 h-10 rounded-full object-cover" :src="product?.thumbnail" :alt="product?.title" />
+                  <img class="w-10 h-10 rounded-full object-cover" :src="product?.thumbnail || '/images/placeholder.png'"  :alt="product?.title" />
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                   <p class="text-gray-900 whitespace-no-wrap">${{ product?.price || "undefined" }}</p>
@@ -193,8 +216,54 @@ onMounted(() => {
               </tr>
             </tbody>
           </table>
+
         </div>
+
+    <!-- Pagination Controls -->
+   <div class="inline-flex justify-center gap-2 items-center">   
+      <!-- Previous Button -->
+    <a
+      href="#"
+      @click.prevent="changePage('previous')"
+      :disabled="currentPage === 0"
+      class="inline-flex items-center justify-center p-2 rounded-sm border border-gray-100 bg-white text-gray-900 hover:bg-gray-100 disabled:opacity-50"
+    >
+      <span class="sr-only">Previous Page</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </a>
+
+
+    <span class="text-gray-700 px-2">{{ currentPage + 1 }}</span>
+
+    <!-- Next Button -->
+    <a
+      href="#"
+      @click.prevent="changePage('next')"
+      :disabled="products.length < pageSize"
+      class="inline-flex items-center justify-center p-2 rounded-sm border border-gray-100 bg-white text-gray-900 hover:bg-gray-100 disabled:opacity-50"
+    >
+      <span class="sr-only">Next Page</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </a>
+
+    <p class="mr-4">Total Project: {{ totalProducts }}</p>
+
+  </div>
+
       </div>
+
     </div>
 
     <!-- Create Product Modal -->
@@ -218,6 +287,8 @@ onMounted(() => {
       @submit="handleEditProduct"
 
     />
+
+    
 
   </div>
 </template>

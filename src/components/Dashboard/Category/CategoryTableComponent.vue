@@ -188,7 +188,7 @@ onMounted(() => {
                   </td>
 
                   <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p class="text-gray-900 whitespace-no-wrap">{{ categories?.createdAt || "undefined" }}</p>
+                    <p class="text-gray-900 whitespace-no-wrap"> {{ categories?.createdAt ? new Date(categories.createdAt).toLocaleString() : "undefined" }}</p>
                   </td>
               
                   <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

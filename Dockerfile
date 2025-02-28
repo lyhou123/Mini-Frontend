@@ -20,7 +20,6 @@ FROM nginx:alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Expose port 80 for the web server
 EXPOSE 4031
 
 # Start the nginx server
