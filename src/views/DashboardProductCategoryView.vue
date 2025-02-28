@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import ProductTableComponent from '../components/Dashboard/ProductTableComponent.vue';
+
+import CategoryTableComponent from '../components/Dashboard/Category/CategoryTableComponent.vue';
 import Sidebar from '../components/layout/Sidebar.vue';
 
 </script>
@@ -7,6 +8,6 @@ import Sidebar from '../components/layout/Sidebar.vue';
 <template>
    <main class="flex cotainer mx-auto">
       <Sidebar/>
-    <ProductTableComponent />
+    <CategoryTableComponent />
    </main>
 </template>

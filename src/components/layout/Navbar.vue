@@ -52,7 +52,7 @@ const logout = () => {
 
     <RouterLink
       to="/"
-      class="text-3xl text-white font-extrabold tracking-tight antialiased transition duration-300 hover:scale-110 hover:text-red-500 cursor-pointer"
+      class="text-3xl text-white font-extrabold tracking-tight antialiased transition duration-300 hover:scale-110 hover:text-green-600 cursor-pointer"
       data-test="nav-logo"
     >
       CAMBO

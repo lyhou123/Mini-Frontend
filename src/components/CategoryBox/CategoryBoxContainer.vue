@@ -8,17 +8,17 @@ import deskmatImage from '/product/categories/category-deskmats.webp'
 const categories = [
 	{
 		src: keebImage,
-		category: 'keyboards',
+		category: 'product',
 		imgClass: [''],
 	},
 	{
 		src: keycapImage,
-		category: 'keycaps',
+		category: 'product',
 		imgClass: ['scale-90'],
 	},
 	{
 		src: deskmatImage,
-		category: 'deskmats',
+		category: 'product',
 		imgClass: ['-mb-6', 'md:-mb-5', 'md:scale-110'],
 	},
 ]

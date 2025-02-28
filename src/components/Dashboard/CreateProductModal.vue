@@ -1,10 +1,73 @@
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { Form, Field, ErrorMessage } from 'vee-validate';
+import * as yup from 'yup';
+import { upLoadFile } from '../../stores/service/FileService';
+
+// Props
+const props = defineProps({
+  isOpen: {
+    type: Boolean,
+    required: true,
+  },
+});
+
+// Emits
+const emit = defineEmits(['close', 'submit']);
+
+// Thumbnail Preview
+const thumbnailPreview = ref<string | null>(null);
+
+const thumbnail = ref<string>('');
+
+// Validation Schema
+const schema = yup.object({
+  title: yup.string().required('Title is required'),
+  description: yup.string().required('Description is required'),
+  price: yup.number().required('Price is required').positive('Price must be positive'),
+  categoryName: yup.string().required('Category Name is required'),
+});
+
+// Close Modal
+const closeModal = () => {
+  emit('close');
+};
+
+const handleFileUpload = async (event: Event) => {
+  
+  const file = (event.target as HTMLInputElement).files?.[0];
+
+  if (file) {
+      thumbnailPreview.value = URL.createObjectURL(file); // Show preview immediately
+
+      try {
+          const thumbnailFile = await upLoadFile(file); 
+          thumbnail.value = thumbnailFile; 
+      } catch (error) {
+          console.error('Upload failed:', error);
+      }
+  }
+};
+
+
+// Handle Form Submission
+const handleSubmit = (values: any) => {
+
+  values.thumbnail = thumbnail.value; // preview URL after upload to server
+  emit('submit', values);
+
+};
+</script>
+
+
 <template>
     <div v-if="props.isOpen" class="fixed inset-0 z-50 flex items-center justify-center">
       <!-- Blurred Background -->
       <div class="fixed inset-0 bg-opacity-50 backdrop-filter backdrop-blur-sm" @click="closeModal"></div>
   
       <!-- Modal Content -->
-      <div class="bg-white overflow-auto h-full rounded-lg shadow-xl p-6 w-full max-w-lg z-50">
+      <div class="bg-white  rounded-lg shadow-xl p-6 w-full max-w-lg z-50">
         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Create Product</h3>
   
         <!-- Form -->
@@ -96,65 +159,4 @@
       </div>
     </div>
   </template>
-  
-  <script setup lang="ts">
-  import { ref } from 'vue';
-  import { Form, Field, ErrorMessage } from 'vee-validate';
-  import * as yup from 'yup';
-  import { upLoadFile } from '../../stores/service/FileService';
-  
-  // Props
-  const props = defineProps({
-    isOpen: {
-      type: Boolean,
-      required: true,
-    },
-  });
-  
-  // Emits
-  const emit = defineEmits(['close', 'submit']);
-  
-  // Thumbnail Preview
-  const thumbnailPreview = ref<string | null>(null);
-
-  const thumbnail = ref<string>('');
-  
-  // Validation Schema
-  const schema = yup.object({
-    title: yup.string().required('Title is required'),
-    description: yup.string().required('Description is required'),
-    price: yup.number().required('Price is required').positive('Price must be positive'),
-    categoryName: yup.string().required('Category Name is required'),
-  });
-  
-  // Close Modal
-  const closeModal = () => {
-    emit('close');
-  };
-  
-  const handleFileUpload = async (event: Event) => {
-    
-    const file = (event.target as HTMLInputElement).files?.[0];
-
-    if (file) {
-        thumbnailPreview.value = URL.createObjectURL(file); // Show preview immediately
-
-        try {
-            const thumbnailFile = await upLoadFile(file); 
-            thumbnail.value = thumbnailFile; 
-        } catch (error) {
-            console.error('Upload failed:', error);
-        }
-    }
-};
-
-  
-  // Handle Form Submission
-  const handleSubmit = (values: any) => {
-
-    values.thumbnail = thumbnail.value; // preview URL after upload to server
-    emit('submit', values);
-
-  };
-  </script>
   

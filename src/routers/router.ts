@@ -9,6 +9,10 @@ import ProductCategory from "../views/ProductCategoryPageView.vue"
 import LoginPageView from "../views/LoginPageView.vue"
 import RegisterPageView from "../views/RegisterPageView.vue"
 import DashboardPageView from "../views/DashboardView.vue"
+import DashboardProductCategoryView from "../views/DashboardProductCategoryView.vue"
+import { useAuthStore } from "../stores/Auth/authStore"
+import NotFound from "../views/NotFoundViewPage.vue"
+
 
 const routes = [
     {
@@ -59,17 +63,37 @@ const routes = [
       component: RegisterPageView
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: DashboardPageView
+      path: "/dashboard",
+      name: "dashboard",
+      component: DashboardPageView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/dashboard/category",
+      name: "dashboardCategory",
+      component: DashboardProductCategoryView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path:'/:pathMatch(.*)*',
+      name: 'not-found',
+      component: NotFound
     }
   ]
-  
 
 const Router = createRouter ({
     history: createWebHistory(),
     routes
 })
+  
+  Router.beforeEach((to:any) => {
+
+    const store = useAuthStore();
+
+    if (to.meta.requiresAuth && !store.isAuthenticated) {
+      return ('/login'); // Redirect to login if not authenticated
+    } 
+  });
 
 
 export default Router;
