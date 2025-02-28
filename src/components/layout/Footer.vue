@@ -24,35 +24,35 @@ import instagramIcon from '/icons/instagram.svg'
 				id="titleNav"
 				class="mb-10 flex flex-col items-center justify-between md:flex-row"
 			>
-				<router-link
+				<RouterLink
 					to="/"
 					class="mb-8 cursor-pointer text-4xl font-bold text-white subpixel-antialiased transition duration-300 hover:scale-110 hover:text-k-main md:mb-0 md:text-3xl"
 				>
 					CAMBO
-				</router-link>
+				</RouterLink>
 				<nav
 					class="flex flex-col items-center justify-between gap-6 md:flex-row md:items-start md:gap-10"
 				>
-					<router-link
-						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-k-main"
+					<RouterLink
+						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-green-600"
 						to="/"
 						>Home
-					</router-link>
-					<router-link
-						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-k-main"
+					</RouterLink>
+					<RouterLink
+						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-green-600"
 						to="/product"
 						>Product
-					</router-link>
-					<router-link
-						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-k-main"
+					</RouterLink>
+					<RouterLink
+						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-green-600"
 						to="/privacy"
 						>privacy
-					</router-link>
-					<router-link
-						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-k-main"
+					</RouterLink>
+					<RouterLink
+						class="font-semibold uppercase tracking-wider text-white transition duration-300 hover:text-green-600"
 						to="/about"
 						>About
-					</router-link>
+					</RouterLink>
 				</nav>
 			</div>
 			<div
@@ -97,7 +97,7 @@ import instagramIcon from '/icons/instagram.svg'
 			<p
 				class="mt-16 text-center text-sm font-semibold tracking-wide text-white opacity-60 md:text-start"
 			>
-				Copyright 2023. All Rights Reserved
+				Copyright 2025. All Rights Reserved
 			</p>
 		</div>
 	</footer>

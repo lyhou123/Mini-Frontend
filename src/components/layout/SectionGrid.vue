@@ -74,7 +74,7 @@ import keycapsImage from '/images/keycaps.webp'
 				</div>
 			</div>
 			<div
-				class="order-3 flex w-full flex-col items-center justify-center gap-6 rounded-md bg-k-grey p-6 text-black md:order-none md:col-span-2 md:row-span-2 md:h-full md:items-start md:bg-white md:px-6"
+				class="order-3 flex w-full flex-col items-center justify-center gap-6 rounded-md bg-gray-100 p-6 text-black md:order-none md:col-span-2 md:row-span-2 md:h-full md:items-start md:bg-white md:px-6"
 			>
 				<h2 class="text-3xl font-semibold uppercase">Kraken deskmat</h2>
 				<ButtonEmpty
@@ -93,12 +93,12 @@ import keycapsImage from '/images/keycaps.webp'
 				/>
 			</RouterLink>
 			<div
-				class="order-4 col-span-3 row-span-2 overflow-hidden rounded-md bg-k-grey text-black md:order-none md:h-full"
+				class="order-4 col-span-3 row-span-2 overflow-hidden rounded-md bg-gray-100 text-black md:order-none md:h-full"
 			>
 				<img class="scale-150 object-cover" :src="keycapsImage" alt="" />
 			</div>
 			<div
-				class="order-5 col-span-3 row-span-2 flex w-full flex-col items-center justify-center gap-6 rounded-md bg-k-grey p-6 text-black md:order-none md:h-full md:items-start md:px-16"
+				class="order-5 col-span-3 row-span-2 flex w-full flex-col items-center justify-center gap-6 rounded-md bg-gray-100 p-6 text-black md:order-none md:h-full md:items-start md:px-16"
 			>
 				<h2 class="text-3xl font-semibold uppercase">Keycaps</h2>
 				<ButtonEmpty :to="{ path: 'product' }" content="see all" />
