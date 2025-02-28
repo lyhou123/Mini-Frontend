@@ -39,10 +39,10 @@ This feature ensures that admin users can seamlessly access the admin panel to m
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-repo/cambod-product.git
+   git clone https://github.com/lyhou123/Mini-Frontend.git
 2. **Navigate to the project directory**:
    ```bash
-   cd cambod-product
+   cd Mini-Frontend
 3. **Install dependencies:**:
    ```bash
    npm install
