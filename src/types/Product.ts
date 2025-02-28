@@ -17,5 +17,6 @@ export type contents = {
 export type Categories = {
     uuid: string
     name: string,
+    createdBy: string,
     createdAt: string
 }

@@ -27,8 +27,7 @@ const thumbnail = ref<string>('');
 const schema = yup.object({
   title: yup.string().required('Title is required'),
   description: yup.string().required('Description is required'),
-  price: yup.number().required('Price is required').positive('Price must be positive'),
-  categoryName: yup.string().required('Category Name is required'),
+  price: yup.number().required('Price is required').positive('Price must be positive')
 });
 
 // Watch product data to reset form when props change
@@ -73,7 +72,7 @@ const handleSubmit = (values: any) => {
     <div class="fixed inset-0 bg-opacity-50 backdrop-filter backdrop-blur-sm" @click="closeModal"></div>
 
     <!-- Modal Content -->
-    <div class="bg-white overflow-auto h-full rounded-lg shadow-xl p-6 w-full max-w-lg z-50">
+    <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg z-50">
       <h3 class="text-2xl font-semibold text-gray-800 mb-4">Edit Product</h3>
 
       <!-- Form -->
@@ -115,17 +114,7 @@ const handleSubmit = (values: any) => {
           <ErrorMessage name="price" class="text-red-500 text-sm mt-1" />
         </div>
 
-        <!-- Category -->
-        <div class="mb-4">
-          <label for="categoryName" class="block text-sm font-medium text-gray-700">Category</label>
-          <Field
-            type="text"
-            name="categoryName"
-            id="categoryName"
-            class="mt-1 block w-full rounded-lg border border-gray-300 p-2 focus:border-blue-500 focus:ring focus:ring-blue-200"
-          />
-          <ErrorMessage name="categoryName" class="text-red-500 text-sm mt-1" />
-        </div>
+        
 
         <!-- Thumbnail with Preview -->
         <div class="mb-4">
